@@ -30,22 +30,13 @@
         $('A-pub').textContent = A;
         $('B-pub').textContent = B;
 
-        // Update Eve's intercepted values
-        $('eve-sees-p').textContent = p;
-        $('eve-sees-g').textContent = g;
-        $('eve-sees-A').textContent = A;
-        $('eve-sees-B').textContent = B;
-
         const sA = Number(modPow(B, a, p));
         const sB = Number(modPow(A, b, p));
 
         $('s-from-a').textContent = sA;
         $('s-from-b').textContent = sB;
 
-        const matchStatus = sA === sB;
-        $('match-msg').innerHTML = matchStatus ?
-            '<div class="success">Shared Secret Successfully Established! ✓</div>' :
-            '<div class="error">Key Exchange Failed - Mismatch ✗</div>';
+        $('match-msg').textContent = sA === sB ? 'Shared secret matches ✓' : 'Mismatch ✗';
 
         // steps
         const steps = [];
