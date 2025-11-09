@@ -1,8 +1,29 @@
-{% extends "diffie_hellman/layout.html" %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<div id='box' class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rextro Exhibition – Journey of Cryptography</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="assets/images/ruhunalogo.png" alt="University of Ruhuna Logo">
+        <h1>Rextro Exhibition</h1>
+        <h2>Journey of Cryptography</h2>
+    </header>
+
+    <nav>
+        <a href="">Home</a>
+        <a href="index.html">Diffie Hellman</a>
+        <a href="rsa.html">RSA</a>
+    </nav>
+
+    <main>
+        <div id='box' class="container">
     <h2>RSA Demo (small primes)</h2>
     <p>This interactive demo shows the math behind RSA encryption using small prime numbers so you can follow the
         calculations step-by-step.</p>
@@ -86,8 +107,15 @@
         <pre id="steps" class="steps" aria-live="polite"></pre>
     </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
 <script src="{% static 'diffie_hellman/rsa_demo.js' %}"></script>
-{% endblock %}
+    </main>
+
+    <footer>
+        <p>Rextro Exhibition – Celebrating 25 Years of Excellence at the University of Ruhuna</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/rsa_demo.js"></script>
+</body>
+
+</html>
