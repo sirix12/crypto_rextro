@@ -23,6 +23,8 @@
         const g = Number($('g-select').value);
         const a = Number($('a-priv').value) || 0;
         const b = Number($('b-priv').value) || 0;
+        $('eve-sees-p').textContent = p;
+        $('eve-sees-g').textContent = g;
 
         const A = Number(modPow(g, a, p));
         const B = Number(modPow(g, b, p));
