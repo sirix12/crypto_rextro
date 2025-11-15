@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -13,11 +17,21 @@ header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
+header {
+    position: relative;
+    /* make toggle position relative to header */
+}
+
 header img {
     width: 70px;
     height: auto;
     vertical-align: middle;
     margin-right: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 nav {
@@ -68,6 +82,81 @@ footer {
     }
 }
 
+/* Reduce header and main title sizes for small screens */
+@media (max-width: 700px) {
+    header h1 {
+        font-size: 1.25rem;
+        margin: 0.25rem 0;
+    }
+
+    header h2 {
+        font-size: 0.95rem;
+        margin-top: 0.25rem;
+        font-weight: 500;
+    }
+
+    main h2 {
+        font-size: 1.1rem;
+    }
+
+    .panel h3 {
+        font-size: 1.05rem;
+    }
+}
+
+/* ensure nav opens/closes smoothly where used */
+nav {
+    transition: max-height 240ms ease-in-out, opacity 240ms ease-in-out;
+}
+
+@media (max-width: 700px) {
+    nav {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+
+    nav.open {
+        max-height: 100vh;
+        opacity: 1;
+    }
+}
+
+/* Small and extra small devices: adjust main container and typography */
+@media (max-width: 1000px) {
+    main {
+        padding: 1.25rem;
+    }
+
+    header img {
+        width: 60px;
+    }
+}
+
+@media (max-width: 700px) {
+    main {
+        margin: 1rem 0.5rem;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    header img {
+        width: 52px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav a {
+        margin: 8px 0;
+        padding: 8px 6px;
+        font-size: 14px;
+    }
+
+    header img {
+        width: 48px;
+    }
+}
+
 /* Diffie-Hellman demo styles */
 .settings-panel {
     margin-bottom: 2rem;
@@ -103,6 +192,47 @@ footer {
     align-items: center;
     margin: 2rem 0;
     min-height: 400px;
+}
+
+@media (max-width: 900px) {
+    .dh-visualization {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-height: auto;
+    }
+
+    .participant {
+        width: 100%;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .alice-section,
+    .bob-section {
+        justify-content: center;
+    }
+
+    .arrow {
+        display: none;
+    }
+
+    .eve-section {
+        max-width: none;
+        width: 100%;
+    }
+
+    /* reduce panel padding in dense stacked layouts */
+    .rsa-visualization .panel,
+    .dh-visualization .panel {
+        padding: 1rem;
+    }
+
+    .rsa-visualization .participant,
+    .dh-visualization .participant {
+        width: 100%;
+        margin: 0;
+    }
 }
 
 .participant {
@@ -208,6 +338,12 @@ footer {
     overflow: auto;
 }
 
+@media (max-width: 700px) {
+    .steps {
+        max-height: 180px;
+    }
+}
+
 input[type="number"] {
     background: #1f2833;
     border: 1px solid #45a29e;
@@ -258,6 +394,19 @@ code {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 2rem 0;
+}
+
+@media (max-width: 1000px) {
+    .rsa-visualization {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .rsa-visualization {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 }
 
 .message-input {
@@ -313,7 +462,16 @@ sup {
 }
 
 .mobile-nav-toggle {
-    display: none
+    display: none;
+    background: #66fcf1;
+    color: #0b0c10;
+    border: none;
+    padding: 8px 10px;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 999;
 }
 
 
@@ -344,6 +502,61 @@ nav {
     justify-content: center;
     background-color: #0b0c10;
     padding: 0.8rem 0;
+}
+
+/* mobile nav behaviour */
+@media (max-width: 700px) {
+    .mobile-nav-toggle {
+        display: block;
+        position: fixed;
+        /* keep visible regardless of page flow */
+        top: 12px;
+        right: 16px;
+    }
+
+    nav {
+        display: flex;
+        /* keep in flow as flex, but hidden via max-height on mobile */
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 64px;
+        background: #0b0c10;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 8px 0;
+        gap: 8px;
+        z-index: 995;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    nav {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+
+    nav.open {
+        max-height: 100vh;
+        opacity: 1;
+    }
+
+    nav a {
+        margin: 0;
+        padding: 10px 16px;
+        display: block;
+        border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    /* Keep header content centered when nav toggle visible */
+    header h1,
+    header h2 {
+        padding-right: 56px;
+        /* make room for toggle */
+    }
 }
 
 nav a {
