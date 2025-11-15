@@ -29,6 +29,7 @@
             nav.parentNode.insertBefore(btn, nav);
         }
 
+        if (nav.id) btn.setAttribute('aria-controls', nav.id);
         btn.addEventListener('click', () => {
             const opened = nav.classList.toggle('open');
             btn.setAttribute('aria-expanded', opened ? 'true' : 'false');
@@ -40,6 +41,17 @@
             if (e.target === nav || nav.contains(e.target) || e.target === btn) return;
             nav.classList.remove('open');
             btn.setAttribute('aria-expanded', 'false');
+        });
+
+        // Close nav when clicking a link (useful on mobile)
+        nav.addEventListener('click', (e) => {
+            const a = e.target.closest('a');
+            if (!a) return;
+            // only close for internal links or any nav link when on a narrow screen
+            if (window.innerWidth <= 700) {
+                nav.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
         });
     }
 
