@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rextro Exhibition – RSA Chat Demo</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/rsa_chat.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="assets/images/ruhunalogo.png" alt="University of Ruhuna Logo">
+        <h1>Rextro Exhibition</h1>
+        <h2>Journey of Cryptography</h2>
+    </header>
+
+    <nav id="main-nav">
+        <a href="index.html">Diffie Hellman</a>
+        <a href="rsa.html">RSA</a>
+        <a href="rsa_chat.html">RSA Chat</a>
+        <a href="aes_chat.html">AES Chat</a>
+    </nav>
+
+    <main>
+        <div id='box' class="container">
+            <h2>RSA Chat Demo – Real-World Encryption</h2>
+            <p>Experience real-world RSA encryption as two users exchange messages. Each user has their own public and
+                private keys. See how Eve (the eavesdropper) cannot read encrypted messages without the private keys!
+            </p>
+
+            <!-- Key Generation Section -->
+            <div class="key-generation-section">
+                <h3>Step 1: Generate Keys for Both Users</h3>
+                <div class="users-keys">
+                    <div class="user-key alice-keys">
+                        <h4>Alice's Keys</h4>
+                        <button id="gen-alice-keys" class="btn-primary">Generate Alice's Keys</button>
+                        <div id="alice-key-display" class="key-display">
+                            <div class="key-item">
+                                <label>Public Key (n):</label>
+                                <code id="alice-n">Not generated</code>
+                            </div>
+                            <div class="key-item">
+                                <label>Public Key (e):</label>
+                                <code id="alice-e">Not generated</code>
+                            </div>
+                            <div class="key-item private-key">
+                                <label>Private Key (d):</label>
+                                <code id="alice-d">Not generated</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-key bob-keys">
+                        <h4>Bob's Keys</h4>
+                        <button id="gen-bob-keys" class="btn-primary">Generate Bob's Keys</button>
+                        <div id="bob-key-display" class="key-display">
+                            <div class="key-item">
+                                <label>Public Key (n):</label>
+                                <code id="bob-n">Not generated</code>
+                            </div>
+                            <div class="key-item">
+                                <label>Public Key (e):</label>
+                                <code id="bob-e">Not generated</code>
+                            </div>
+                            <div class="key-item private-key">
+                                <label>Private Key (d):</label>
+                                <code id="bob-d">Not generated</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Chat Section -->
+            <div class="chat-section">
+                <h3>Step 2: Start Chatting</h3>
+
+                <div class="chat-container">
+                    <!-- Alice's side -->
+                    <div class="chat-user alice-chat">
+                        <h4>Alice</h4>
+                        <div class="message-input-area">
+                            <textarea id="alice-message" placeholder="Type your message here..."></textarea>
+                            <button id="alice-send" class="btn-send">Send to Bob</button>
+                        </div>
+                        <div class="chat-messages" id="alice-messages">
+                            <div class="info-message">Messages Alice sends will be encrypted with Bob's public key</div>
+                        </div>
+                    </div>
+
+                    <!-- Middle section - Eve's interception -->
+                    <div class="chat-user eve-intercept">
+                        <h4>Eve (Eavesdropper)</h4>
+                        <div class="eve-info">
+                            <p class="note">Eve can see all messages but cannot decrypt them without private keys!</p>
+                            <div class="eve-knowledge">
+                                <label>Eve's Knowledge:</label>
+                                <div class="eve-item">
+                                    <span>Alice's Public Key (n):</span>
+                                    <code id="eve-alice-n">-</code>
+                                </div>
+                                <div class="eve-item">
+                                    <span>Alice's Public Key (e):</span>
+                                    <code id="eve-alice-e">-</code>
+                                </div>
+                                <div class="eve-item">
+                                    <span>Bob's Public Key (n):</span>
+                                    <code id="eve-bob-n">-</code>
+                                </div>
+                                <div class="eve-item">
+                                    <span>Bob's Public Key (e):</span>
+                                    <code id="eve-bob-e">-</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="eve-messages">
+                            <div class="info-message">Intercepted encrypted messages will appear here</div>
+                        </div>
+                    </div>
+
+                    <!-- Bob's side -->
+                    <div class="chat-user bob-chat">
+                        <h4>Bob</h4>
+                        <div class="message-input-area">
+                            <textarea id="bob-message" placeholder="Type your message here..."></textarea>
+                            <button id="bob-send" class="btn-send">Send to Alice</button>
+                        </div>
+                        <div class="chat-messages" id="bob-messages">
+                            <div class="info-message">Messages Bob sends will be encrypted with Alice's public key</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- How it works section -->
+            <div class="how-it-works">
+                <h3>How It Works</h3>
+                <div class="steps-explanation">
+                    <div class="step">
+                        <h4>🔑 Step 1: Key Generation</h4>
+                        <p>Each user generates their own RSA key pair (public and private keys). Public keys are shared
+                            with everyone; private keys are kept secret.</p>
+                    </div>
+                    <div class="step">
+                        <h4>✉️ Step 2: Sending Messages</h4>
+                        <p>To send a message to Bob, Alice encrypts it using Bob's public key. Only Bob (who has the
+                            private key) can decrypt it.</p>
+                    </div>
+                    <div class="step">
+                        <h4>👀 Step 3: Eve's Dilemma</h4>
+                        <p>Even though Eve can intercept all encrypted messages and knows all public keys, she cannot
+                            decrypt without the private keys. Factoring large numbers is computationally impossible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Technical Details Section -->
+            <div class="technical-details">
+                <h3>Technical Details (1024-bit RSA)</h3>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="details">Key Details</button>
+                    <button class="tab-btn" data-tab="operations">Encryption/Decryption</button>
+                </div>
+                <div id="details" class="tab-content active">
+                    <pre id="technical-log" class="technical-log"></pre>
+                </div>
+                <div id="operations" class="tab-content">
+                    <pre id="operations-log" class="operations-log"></pre>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Rextro Exhibition – Celebrating 25 Years of Excellence at the University of Ruhuna</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js"></script>
+    <script src="assets/js/rsa_chat_demo.js"></script>
+    <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>

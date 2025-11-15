@@ -16,84 +16,87 @@
         <h2>Journey of Cryptography</h2>
     </header>
 
-    <nav>
+    <nav id="main-nav">
         <a href="index.html">Diffie Hellman</a>
         <a href="rsa.html">RSA</a>
+        <a href="rsa_chat.html">RSA Chat</a>
+        <a href="aes_chat.html">AES Chat</a>
     </nav>
 
     <main>
-<div id='box' class="container">
-    <h2>Diffie–Hellman Demo (small primes)</h2>
-    <p>This interactive demo shows the math behind Diffie–Hellman key exchange using small prime numbers so you can
-        follow the calculations step-by-step.</p>
+        <div id='box' class="container">
+            <h2>Diffie–Hellman Demo (small primes)</h2>
+            <p>This interactive demo shows the math behind Diffie–Hellman key exchange using small prime numbers so you
+                can
+                follow the calculations step-by-step.</p>
 
-    <div class="settings-panel panel">
-        <label>Prime (p):
-            <select id="p-select">
-                <option value="23">23</option>
-                <option value="29">29</option>
-                <option value="31">31</option>
-            </select>
-        </label>
-        <label>Generator (g):
-            <select id="g-select">
-                <option value="5">5</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-        </label>
-        <button id="random-priv">Randomize private keys</button>
-    </div>
+            <div class="settings-panel panel">
+                <label>Prime (p):
+                    <select id="p-select">
+                        <option value="23">23</option>
+                        <option value="29">29</option>
+                        <option value="31">31</option>
+                    </select>
+                </label>
+                <label>Generator (g):
+                    <select id="g-select">
+                        <option value="5">5</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </label>
+                <button id="random-priv">Randomize private keys</button>
+            </div>
 
-    <div class="dh-visualization">
-        <div class="participant alice-section">
-            <div class="panel">
-                <h3>A (Alice)</h3>
-                <div class="calculations">
-                    <label>Private a: <input id="a-priv" type="number" min="1" value="6"></label>
-                    <div class="calc-step">Public A = g^a mod p: <code id="A-pub">-</code></div>
-                    <div class="calc-step">Shared Secret: <code id="s-from-a">-</code></div>
+            <div class="dh-visualization">
+                <div class="participant alice-section">
+                    <div class="panel">
+                        <h3>A (Alice)</h3>
+                        <div class="calculations">
+                            <label>Private a: <input id="a-priv" type="number" min="1" value="6"></label>
+                            <div class="calc-step">Public A = g^a mod p: <code id="A-pub">-</code></div>
+                            <div class="calc-step">Shared Secret: <code id="s-from-a">-</code></div>
+                        </div>
+                    </div>
+                    <div class="arrow right"></div>
+                </div>
+
+                <div class="participant eve-section">
+                    <div class="panel">
+                        <h3>Eve (Middle Man)</h3>
+                        <div class="intercepted-data">
+                            <div class="calc-step">Intercepted from Alice: <code id="eve-sees-A">-</code></div>
+                            <div class="calc-step">Intercepted from Bob: <code id="eve-sees-B">-</code></div>
+                            <div class="calc-step">Known Public Values:</div>
+                            <div class="calc-step indent">p = <code id="eve-sees-p">-</code></div>
+                            <div class="calc-step indent">g = <code id="eve-sees-g">-</code></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="participant bob-section">
+                    <div class="arrow left"></div>
+                    <div class="panel">
+                        <h3>B (Bob)</h3>
+                        <div class="calculations">
+                            <label>Private b: <input id="b-priv" type="number" min="1" value="15"></label>
+                            <div class="calc-step">Public B = g^b mod p: <code id="B-pub">-</code></div>
+                            <div class="calc-step">Shared Secret: <code id="s-from-b">-</code></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="arrow right"></div>
-        </div>
 
-        <div class="participant eve-section">
-            <div class="panel">
-                <h3>Eve (Middle Man)</h3>
-                <div class="intercepted-data">
-                    <div class="calc-step">Intercepted from Alice: <code id="eve-sees-A">-</code></div>
-                    <div class="calc-step">Intercepted from Bob: <code id="eve-sees-B">-</code></div>
-                    <div class="calc-step">Known Public Values:</div>
-                    <div class="calc-step indent">p = <code id="eve-sees-p">-</code></div>
-                    <div class="calc-step indent">g = <code id="eve-sees-g">-</code></div>
-                </div>
+            <div class="result-panel panel">
+                <h3>Key Exchange Result</h3>
+                <div id="match-msg"></div>
             </div>
+
+            <hr>
+            <h4>Computation steps</h4>
+            <pre id="steps" class="steps" aria-live="polite"></pre>
+
         </div>
-
-        <div class="participant bob-section">
-            <div class="arrow left"></div>
-            <div class="panel">
-                <h3>B (Bob)</h3>
-                <div class="calculations">
-                    <label>Private b: <input id="b-priv" type="number" min="1" value="15"></label>
-                    <div class="calc-step">Public B = g^b mod p: <code id="B-pub">-</code></div>
-                    <div class="calc-step">Shared Secret: <code id="s-from-b">-</code></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="result-panel panel">
-        <h3>Key Exchange Result</h3>
-        <div id="match-msg"></div>
-    </div>
-
-    <hr>
-    <h4>Computation steps</h4>
-    <pre id="steps" class="steps" aria-live="polite"></pre>
-
-</div>
     </main>
 
     <footer>

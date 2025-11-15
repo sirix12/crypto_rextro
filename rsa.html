@@ -16,97 +16,100 @@
         <h2>Journey of Cryptography</h2>
     </header>
 
-    <nav>
+    <nav id="main-nav">
         <a href="index.html">Diffie Hellman</a>
         <a href="rsa.html">RSA</a>
+        <a href="rsa_chat.html">RSA Chat</a>
+        <a href="aes_chat.html">AES Chat</a>
     </nav>
 
     <main>
         <div id='box' class="container">
-    <h2>RSA Demo (small primes)</h2>
-    <p>This interactive demo shows the math behind RSA encryption using small prime numbers so you can follow the
-        calculations step-by-step.</p>
+            <h2>RSA Demo (small primes)</h2>
+            <p>This interactive demo shows the math behind RSA encryption using small prime numbers so you can follow
+                the
+                calculations step-by-step.</p>
 
-    <div class="settings-panel panel">
-        <label>First Prime (p):
-            <select id="p-select">
-                <option value="3">3</option>
-                <option value="5">5</option>
-                <option value="7">7</option>
-                <option value="11">11</option>
-            </select>
-        </label>
-        <label>Second Prime (q):
-            <select id="q-select">
-                <option value="5">5</option>
-                <option value="7">7</option>
-                <option value="11">11</option>
-                <option value="13">13</option>
-            </select>
-        </label>
-        <button id="random-primes">Randomize Primes</button>
-    </div>
-
-    <div class="rsa-visualization">
-        <div class="participant alice-section">
-            <div class="panel">
-                <h3>Key Generation</h3>
-                <div class="calculations">
-                    <div class="calc-step">n = p × q = <code id="n-value">-</code></div>
-                    <div class="calc-step">φ(n) = (p-1)(q-1) = <code id="phi-value">-</code></div>
-                    <div class="calc-step">Public Key (e):
-                        <select id="e-select">
-                            <option value="">Choose e</option>
-                        </select>
-                    </div>
-                    <div class="calc-step">Private Key (d): <code id="d-value">-</code></div>
-                </div>
+            <div class="settings-panel panel">
+                <label>First Prime (p):
+                    <select id="p-select">
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                        <option value="11">11</option>
+                    </select>
+                </label>
+                <label>Second Prime (q):
+                    <select id="q-select">
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                        <option value="11">11</option>
+                        <option value="13">13</option>
+                    </select>
+                </label>
+                <button id="random-primes">Randomize Primes</button>
             </div>
-        </div>
 
-        <div class="participant message-section">
-            <div class="panel">
-                <h3>Message Encryption/Decryption</h3>
-                <div class="message-input">
-                    <label>Original Message (M):
-                        <input type="number" id="message" min="0" value="4">
-                    </label>
-                    <div class="note">Message must be less than n</div>
-                </div>
-                <div class="calculations">
-                    <div class="calc-step">
-                        Encryption: C = M<sup>e</sup> mod n
-                        <div class="result">C = <code id="encrypted-value">-</code></div>
-                    </div>
-                    <div class="calc-step">
-                        Decryption: M = C<sup>d</sup> mod n
-                        <div class="result">M = <code id="decrypted-value">-</code></div>
+            <div class="rsa-visualization">
+                <div class="participant alice-section">
+                    <div class="panel">
+                        <h3>Key Generation</h3>
+                        <div class="calculations">
+                            <div class="calc-step">n = p × q = <code id="n-value">-</code></div>
+                            <div class="calc-step">φ(n) = (p-1)(q-1) = <code id="phi-value">-</code></div>
+                            <div class="calc-step">Public Key (e):
+                                <select id="e-select">
+                                    <option value="">Choose e</option>
+                                </select>
+                            </div>
+                            <div class="calc-step">Private Key (d): <code id="d-value">-</code></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="participant eve-section">
-            <div class="panel">
-                <h3>Eve (Eavesdropper)</h3>
-                <div class="intercepted-data">
-                    <div class="calc-step">Known Public Values:</div>
-                    <div class="calc-step indent">n = <code id="eve-sees-n">-</code></div>
-                    <div class="calc-step indent">e = <code id="eve-sees-e">-</code></div>
-                    <div class="calc-step">Intercepted Message:</div>
-                    <div class="calc-step indent">C = <code id="eve-sees-c">-</code></div>
-                    <div class="note">To decrypt, Eve needs d, which requires factoring n into p and q</div>
+                <div class="participant message-section">
+                    <div class="panel">
+                        <h3>Message Encryption/Decryption</h3>
+                        <div class="message-input">
+                            <label>Original Message (M):
+                                <input type="number" id="message" min="0" value="4">
+                            </label>
+                            <div class="note">Message must be less than n</div>
+                        </div>
+                        <div class="calculations">
+                            <div class="calc-step">
+                                Encryption: C = M<sup>e</sup> mod n
+                                <div class="result">C = <code id="encrypted-value">-</code></div>
+                            </div>
+                            <div class="calc-step">
+                                Decryption: M = C<sup>d</sup> mod n
+                                <div class="result">M = <code id="decrypted-value">-</code></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="participant eve-section">
+                    <div class="panel">
+                        <h3>Eve (Eavesdropper)</h3>
+                        <div class="intercepted-data">
+                            <div class="calc-step">Known Public Values:</div>
+                            <div class="calc-step indent">n = <code id="eve-sees-n">-</code></div>
+                            <div class="calc-step indent">e = <code id="eve-sees-e">-</code></div>
+                            <div class="calc-step">Intercepted Message:</div>
+                            <div class="calc-step indent">C = <code id="eve-sees-c">-</code></div>
+                            <div class="note">To decrypt, Eve needs d, which requires factoring n into p and q</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="steps-panel panel">
-        <h3>Computation Steps</h3>
-        <pre id="steps" class="steps" aria-live="polite"></pre>
-    </div>
-</div>
-<script src="assets/js/rsa_demo.js"></script>
+            <div class="steps-panel panel">
+                <h3>Computation Steps</h3>
+                <pre id="steps" class="steps" aria-live="polite"></pre>
+            </div>
+        </div>
+        <script src="assets/js/rsa_demo.js"></script>
     </main>
 
     <footer>
@@ -114,7 +117,7 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
-    
+
 </body>
 
 </html>
