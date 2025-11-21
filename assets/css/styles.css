@@ -194,10 +194,74 @@ nav {
     min-height: 400px;
 }
 
+/* Grid wrapper for Diffie-Hellman participants to match RSA chat responsive flow */
+.dh-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    min-height: 400px;
+    background: linear-gradient(180deg, #000000 0%, #070708 60%, #0b0c10 100%);
+    border: 2px solid #66fcf1;
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(11, 12, 16, 0.6),
+        0 0 30px rgba(102, 252, 241, 0.18),
+        0 0 18px rgba(102, 252, 241, 0.06) inset;
+}
+
+/* Make the DH participant panels look like the RSA chat neon panels */
+.dh-container .panel {
+    background: #0b0c10;
+    border: 2px solid #45a29e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.dh-container .panel:hover {
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.12);
+    transform: translateY(-4px);
+}
+
+.dh-container .participant {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.dh-container .alice-section .panel {
+    border-color: #66fcf1;
+}
+
+.dh-container .bob-section .panel {
+    border-color: #45a29e;
+}
+
+.dh-container .eve-section .panel {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.03);
+}
+
+.dh-container .panel h3 {
+    color: #66fcf1;
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
 @media (max-width: 900px) {
     .dh-visualization {
         display: flex;
         flex-direction: column;
+        gap: 1rem;
+        min-height: auto;
+    }
+
+    /* On narrow screens switch dh-container to a single column like RSA chat */
+    .dh-container {
+        grid-template-columns: 1fr;
         gap: 1rem;
         min-height: auto;
     }
@@ -232,6 +296,37 @@ nav {
     .dh-visualization .participant {
         width: 100%;
         margin: 0;
+    }
+
+    /* ensure RSA participants center when stacked at <=900px */
+    .rsa-visualization {
+        justify-items: center;
+    }
+
+    .rsa-visualization .participant {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .alice-section,
+    .bob-section {
+        margin: 0;
+    }
+}
+
+/* Ensure DH container items are centered when stacked */
+@media (max-width: 900px) {
+    .dh-container {
+        justify-items: center;
+    }
+
+    .dh-container .participant {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        justify-content: center;
     }
 }
 
@@ -394,6 +489,11 @@ code {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin: 2rem 0;
+    background: linear-gradient(180deg, #000000 0%, #070708 60%, #0b0c10 100%);
+    border: 2px solid #66fcf1;
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(11, 12, 16, 0.6), 0 0 30px rgba(102, 252, 241, 0.16), 0 0 18px rgba(102, 252, 241, 0.06) inset;
 }
 
 @media (max-width: 1000px) {
@@ -407,6 +507,17 @@ code {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+
+    /* Center RSA panels when stacked */
+    .rsa-visualization {
+        justify-items: center;
+    }
+
+    .rsa-visualization .participant {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+    }
 }
 
 .message-input {
@@ -414,6 +525,35 @@ code {
     padding: 1rem;
     background: rgba(102, 252, 241, 0.05);
     border-radius: 8px;
+}
+
+/* Make RSA panels match neon style used elsewhere */
+.rsa-visualization .panel {
+    background: #0b0c10;
+    border: 2px solid #45a29e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.rsa-visualization .panel:hover {
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.12);
+    transform: translateY(-4px);
+}
+
+.rsa-visualization .alice-section .panel {
+    border-color: #66fcf1;
+}
+
+.rsa-visualization .message-section .panel {
+    border-color: #45a29e;
+}
+
+.rsa-visualization .eve-section .panel {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.03);
 }
 
 .note {
