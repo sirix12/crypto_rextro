@@ -1438,16 +1438,3 @@ sup {
 .back-to-top.visible {
     display: block
 }
-
-.mobile-nav-toggle {
-    display: none;
-    background: #66fcf1;
-    color: #0b0c10;
-    border: none;
-    padding: 8px 10px;
-    font-size: 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    z-index: 999;
-}
