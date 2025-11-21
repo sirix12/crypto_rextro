@@ -177,6 +177,7 @@ footer {
     right: 12px;
 }
 
+/* Responsive adjustments */
 @media (max-width: 1000px) {
     .footer-row .footer-text {
         margin: 0 110px;
@@ -326,6 +327,46 @@ footer {
     color: #66fcf1;
     text-align: center;
     margin: 0 0 1rem 0;
+}
+
+@media (max-width: 900px) {
+
+    /* Make RSA visualization behave like the DH/RSA-chat stacked layout */
+    .rsa-visualization {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        justify-items: center !important;
+        align-items: start !important;
+    }
+
+    .rsa-visualization .participant {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    /* reduce panel padding for stacked, tighter layout */
+    .rsa-visualization .panel {
+        padding: 1rem !important;
+    }
+
+    /* ensure code / result boxes don't overflow when stacked */
+    .rsa-visualization code,
+    .rsa-visualization .result,
+    .rsa-visualization .steps {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* keep inputs / selects full width for mobile */
+    .rsa-visualization input,
+    .rsa-visualization select,
+    .rsa-visualization button {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 @media (max-width: 900px) {
@@ -1006,6 +1047,46 @@ footer {
     color: #66fcf1;
     text-align: center;
     margin: 0 0 1rem 0;
+}
+
+@media (max-width: 900px) {
+
+    /* Make RSA visualization behave like the DH/RSA-chat stacked layout */
+    .rsa-visualization {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        justify-items: center !important;
+        align-items: start !important;
+    }
+
+    .rsa-visualization .participant {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    /* reduce panel padding for stacked, tighter layout */
+    .rsa-visualization .panel {
+        padding: 1rem !important;
+    }
+
+    /* ensure code / result boxes don't overflow when stacked */
+    .rsa-visualization code,
+    .rsa-visualization .result,
+    .rsa-visualization .steps {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* keep inputs / selects full width for mobile */
+    .rsa-visualization input,
+    .rsa-visualization select,
+    .rsa-visualization button {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 @media (max-width: 900px) {
